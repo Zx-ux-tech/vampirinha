@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para minha vampirinha 💝</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #ff4b5c, #ffffff);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: #fff;
+    }
+
+    h1 {
+      margin-top: 100px;
+      font-size: 2.5rem;
+    }
+
+    #timer {
+      font-size: 2rem;
+      margin: 20px 0;
+    }
+
+    #message {
+      margin-bottom: 40px;
+      font-size: 1.2rem;
+    }
+
+    .button {
+      background-color: red;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background-color: darkred;
+    }
+
+    .heart {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      background: url('https://i.imgur.com/Z7AzH2c.png') no-repeat center/contain;
+      top: -50px;
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="URL_DA_SUA_MUSICA_AQUI.mp3" type="audio/mpeg">
+  </audio>
+
+  <h1>Tempo desde que nos conhecemos</h1>
+  <div id="timer"></div>
+  <div id="message">Contando os segundos desde o dia em que me apaixonei por você</div>
+  <button class="button" onclick="window.location.href='carta.html'">Carta para minha vampirinha</button>
+
+  <script>
+    const startDate = new Date("2025-05-17T00:00:00").getTime();
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      timerEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // corações caindo
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 4) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
+
